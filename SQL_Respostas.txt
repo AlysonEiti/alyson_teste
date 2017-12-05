@@ -1,0 +1,73 @@
+1 -
+
+tb_customer: id_customer é a Primary Key
+dm_address_type: cd_address_type é a Primary key
+tb_customer_address: Tem uma primary key composta por 2 Foreign key, sendo elas id_customer e cd_address_type
+
+2 - 
+
+INSERT INTO tb_customer(id_customer, nm_customer, cpf_cnpj) VALUES(id_customer_seq.NEXTVAL, 'Joãozinho Silva', 88877766655);
+INSERT INTO dm_address_type(cd_address_type, ds_address_type) VALUES('R','Residêncial');  
+INSERT INTO dm_address_type(cd_address_type, ds_address_type) VALUES('C','Comercial');
+INSERT INTO dm_address_type(cd_address_type, ds_address_type) VALUES('O','Outros');
+INSERT INTO tb_customer_address(id_customer, cd_address_type, street, lot, feferencs, zipcode) VALUES(1, 'R','Rua das Flores', 1, null, 'CEP: 012345-67');
+INSERT INTO tb_customer_address(id_customer, cd_address_type, street, lot, feferencs, zipcode) VALUES(1,'C', 'Rua das Pedras', 100, 'Conjunto 200', 'CEP: 012345-67');
+
+
+3 -
+Podem ser cadastrado até 3 tipos de endereços diferentes, 1 para residêncial, 1 para comercial e 1 para outros. Caso tente adicionar mais dará erro de exceção de PK violada .
+
+4 -
+DELETE FROM tb_customer_address WHERE id_customer = (SELECT id_customer FROM tb_customer WHERE cpf_cnpj = 88877766655);
+DELETE FROM tb_customer WHERE cpf_cnpj = 88877766655;
+
+ou simplesmente DELETE FROM tb_customer WHERE cpf_cnpj = 88877766655;
+Caso tenha uma cláusula ON DELETE CASCADE definida nas FK's dependentes da tabela tb_customer.
+ 
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  -- SCRIPT UTILIZADO
+
+ CREATE TABLE tb_customer(
+	id_customer NUMBER(5) PRIMARY KEY NOT NULL,
+	nm_customer VARCHAR2(255),
+	cpf_cnpj NUMBER(11)
+);
+
+CREATE TABLE dm_address_type(
+	cd_address_type CHAR(1) PRIMARY KEY NOT NULL,
+	ds_address_type VARCHAR2(50)
+);
+
+CREATE TABLE tb_customer_address(
+	id_customer NUMBER(5),
+	cd_address_type CHAR(1),
+	street VARCHAR2(255),
+	lot NUMBER(5),
+	referencs VARCHAR2(255),
+	zipcode VARCHAR2(50),
+
+	CONSTRAINT fk_id_customer FOREIGN KEY (id_customer) REFERENCES tb_customer(id_customer),
+	CONSTRAINT fk_cd_address_type FOREIGN KEY (cd_address_type) REFERENCES dm_address_type(cd_address_type),
+	CONSTRAINT pk_tb_customer_address PRIMARY KEY (id_customer, cd_address_type)
+);
+
+CREATE SEQUENCE id_customer_seq
+  START WITH 1
+  INCREMENT BY 1
+  MAXVALUE 99999
+  MINVALUE 1
+  NOCYCLE;
+
+  
+INSERT INTO tb_customer(id_customer, nm_customer, cpf_cnpj) VALUES(id_customer_seq.NEXTVAL, 'Joãozinho Silva', 88877766655);
+INSERT INTO dm_address_type(cd_address_type, ds_address_type) VALUES('R','Residêncial');  
+INSERT INTO dm_address_type(cd_address_type, ds_address_type) VALUES('C','Comercial');
+INSERT INTO dm_address_type(cd_address_type, ds_address_type) VALUES('O','Outros');
+INSERT INTO tb_customer_address(id_customer, cd_address_type, street, lot, feferencs, zipcode) VALUES(1, 'R','Rua das Flores', 1, null, 'CEP: 012345-67');
+INSERT INTO tb_customer_address(id_customer, cd_address_type, street, lot, feferencs, zipcode) VALUES(1,'C', 'Rua das Pedras', 100, 'Conjunto 200', 'CEP: 012345-67');
+
+SELECT * FROM tb_customer;
+SELECT * FROM dm_address_type;
+SELECT * FROM tb_customer_address;

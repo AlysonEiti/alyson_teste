@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+	<meta charset "UTF-8"/>
+	<title>Sistema de corrida</title>
+	
+	<link rel="stylesheet" type="text/css" href="css/estilo.css"/>
+	<link rel="stylesheet" type="text/css" href="css/forma.css"/>
+	
+</head>
+
+<body>
+<div id="interface">
+
+	<header id="cabecalho">
+		<h1>Corridas compartilhadas</h1>
+		
+		<nav id="menu">
+			<ul type="disc">
+				<li><a href="index.html">Cadastrar</a></li>
+				<li><a href="consultar.php">Consultar</a></li>
+				<li><a href="alterar.html">Alterar</a></li>
+			</ul>
+		</nav>
+	</header>
+	
+	<nav id="menu2">
+		<ul type="disc">
+			<li><a href="index.html">Motorista</a></li>
+			<li><a href="passageiro.html">Passageiro</a></li>
+			<li><a href="corrida.html">Corrida</a></li>
+		</ul>
+	</nav>
+	<h2>Sistema de cadastro</h2>
+	<br/><br/>
+	
+	<form action="passageiro.php" method="post" id="cCadastro">
+		<fieldset id="passageiro">
+			<legend>Passageiro</legend>
+			<p><label for="cNome">Nome </label><input type="text" name="tNome" id="cNome" size="20" placeholder="Nome Completo"/></p>
+			<p><label for="cCPF">CPF </label><input type="text" name="tCPF" id="cCPF" size="11" maxlength="11" placeholder="11 digitos"/></p>
+			<fieldset id="sexo"><legend>Sexo</legend>
+				<input type="radio" name="tSexo" id="cMasc" checked/> <label for="cMasc">Masculino</label><br/>
+				<input type="radio" name="tSexo" id="cFem"/> <label for="cFem">Feminino</label>
+			</fieldset>
+			<p><label for="cData">Data de Nascimento </label><input type="date" name="tData" id="cData"/></p>
+		
+		</fieldset>
+		<center><input class="botao" type="submit" value="Cadastrar" name="tCad" id="cCad"/></center>
+		
+		<br/><br/><br/>
+	</form>
+	
+	<footer id="rodape">
+		<p>Criado por Alyson Eiti <br/>
+		<a href="http://facebook.com/alysoneiti" target="_blank">Facebook</a>
+	</footer>
+
+</div>
+</body>
+</html>

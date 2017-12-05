@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+	<meta charset "UTF-8"/>
+	<title>Sistema de corrida</title>
+	
+	<link rel="stylesheet" type="text/css" href="css/estilo.css"/>
+	<link rel="stylesheet" type="text/css" href="css/forma.css"/>
+	
+</head>
+
+<body>
+<div id="interface">
+
+	<header id="cabecalho">
+		<h1>Corridas compartilhadas</h1>
+		
+		<nav id="menu">
+			<ul type="disc">
+				<li><a href="index.html">Cadastrar</a></li>
+				<li><a href="consultar.php">Consultar</a></li>
+				<li><a href="alterar.html">Alterar</a></li>
+			</ul>
+		</nav>
+	</header>
+	
+	<h2>Alterar status de motorista</h2>
+	
+	<?php
+		require_once("conexao/conexao.php");
+		$query = "SELECT nome FROM motorista";
+		$consulta = mysqli_query($query);
+	?>
+	
+	<form action="alterar.php" method="post" id="cCadastro">
+		<fieldset id="corrida">
+			<legend>Registrar Corrida</legend>
+			<p><label for="cMot">Motorista </label><select name="tMot" id="cMot">
+				<option>Selecione o motorista</option>
+				<?php while($mot = mysql_fetch_array($consulta)) { ?>
+				<option value="<?php echo $mot['nome']; ?>"><?php echo $mot['nome']; ?></option>
+				<?php } ?>
+			</select></p>
+			
+			<p><label for="cSts">Status </label><select name="tSts" id="cSts">
+				<option value="Ativo" selected>Ativo</option>
+				<option value="Inativo">Inativo</option>
+			</select></p>
+		
+		</fieldset>
+		<input type="hidden" name="acao" value="atualizado"/>
+		<center><input class="botao" type="submit" value="Atualizar" name="tAtt" id="cAtt"/></center>
+		
+		<br/><br/><br/>
+	</form>
+	
+	<footer id="rodape">
+		<p>Criado por Alyson Eiti <br/>
+		<a href="http://facebook.com/alysoneiti" target="_blank">Facebook</a>
+	</footer>
+
+</div>
+</body>
+</html>
