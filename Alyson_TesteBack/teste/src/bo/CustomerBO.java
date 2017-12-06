@@ -23,7 +23,9 @@ public class CustomerBO {
 	public static String getAll() throws Exception{
 		
 		CustomerDAO dao = new CustomerDAO();
-		return dao.getAll();
+		String msg = dao.getAll();
+		dao.fecharConexao();
+		return msg;
 	}
 
 }
