@@ -1,0 +1,129 @@
+@charset "UTF-8";
+	
+body {
+	font-family: Arial, sans-serif;
+	background-color: white;
+	color: black;
+}
+
+div#interface {
+	width: 900px;
+	background-color: white;
+	margin: -20px auto 10px auto;
+	padding: 10px;
+	box-shadow: 0px 0px 10px black;
+}
+
+header#cabecalho {
+	border-bottom: 1px #606060 solid;
+	height: 150px;
+	background-position: 0px 80px;
+	background-repeat: no-repeat;
+}
+
+header#cabecalho h1 {
+	font-family: Arial, sans-serif;
+	font-size: 30pt;
+	text-align: center;
+	color: #606060;
+}
+	
+h2 {
+	margin-top: 12px;
+	font-family: Arial, sans-serif;
+	font-size: 20pt;
+	text-align: center;
+	color: #606060;
+}
+
+	/* FORMTAÇÃO DE MENU */
+
+nav#menu {
+	display: block;
+}
+	
+nav#menu ul{
+	list-style: none;
+	text-transform: uppercase;
+	position: absolute;
+	top: 80px;
+	left: 450px;
+}
+	
+nav#menu li{
+	display: inline-table;
+	padding: 10px;
+	background-color: #dddddd;
+	margin: 2px;
+	transition: background-color 1s;
+}
+	
+nav#menu li:hover{
+	background-color: #606060;
+}
+
+nav#menu a {
+	color:black;
+	text-decoration:none;
+}
+
+nav#menu a:hover {
+	color:white;
+	text-decoration:none;
+}
+
+fieldset {
+	border-color: #cecece;
+	margin: 20px;
+}
+	
+fieldset#sexo {
+	width: 150px;
+}
+
+	/* MENU 2 */
+
+nav#menu2 {
+	display: block;
+}
+	
+nav#menu2 ul{
+	list-style: none;
+	text-transform: uppercase;
+	position: absolute;
+	top: 210px;
+	left: 455px;
+}
+
+nav#menu2 li{
+	display: inline-table;
+	padding: 10px;
+	background-color: #dddddd;
+	margin: 2px;
+	transition: background-color 1s;
+}
+
+nav#menu2 li:hover{
+	background-color: #606060;
+}
+
+nav#menu2 a {
+	color:black;
+	text-decoration:none;
+}
+
+nav#menu2 a:hover {
+	color:white;
+	text-decoration:none;
+}
+
+	/*	RODAPÉ	*/
+	
+footer#rodape {
+	clear: both;
+	border-top: 1px solid #606060;
+}
+
+footer#rodape p{
+	text-align: center;
+}
