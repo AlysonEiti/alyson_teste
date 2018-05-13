@@ -1,0 +1,35 @@
+1 - Identifique as colunas que compõe a chave primária de cada tabela.
+
+tb_customer: id_customer é a primary key
+dm_address_type: cd_address_type é a primary key
+tb_customer_address: tem uma primary key composta por 2 foreign key, sendo elas id_customer e cd_address_type
+
+
+2 = Utilizando o comando INSERT de SQL, crie os scripts para cadastrar o cliente abaixo:
+
+Joãozinho Silva - 888.777.666-55
+Endereço Residencial: Rua das Flores, 1. CEP: 01234-567
+Endereço Comercial: Rua das Pedras, 100	Conjunto 200. CEP: 01234-567
+
+INSERT INTO tb_customer(id_customer, nm_customer, cpf_cnpj) VALUES(1, 'Joãozinho Silva', 88877766655);
+INSERT INTO dm_address_type(cd_address_type, ds_address_type) VALUES('R','Residêncial');  
+INSERT INTO dm_address_type(cd_address_type, ds_address_type) VALUES('C','Comercial');
+INSERT INTO dm_address_type(cd_address_type, ds_address_type) VALUES('O','Outros');
+INSERT INTO tb_customer_address(id_customer, cd_address_type, street, lot, referencs, zipcode) VALUES(1,'R','Rua das Flores', 1, null, '012345-67');
+INSERT INTO tb_customer_address(id_customer, cd_address_type, street, lot, referencs, zipcode) VALUES(1,'C','Rua das Pedras', 100,'Conjunto 200', '012345-67');
+
+
+3 - Quantos endereços diferentes podem ser cadastrado para um cliente?
+
+Cada cliente pode ter até 3 tipos de endereços diferentes, caso tente adicionar outro ou mesmo um tipo de endereço igual(R,C,O) dará erro de PK violada.
+
+
+4 - Dado um CPF, qual seria o passo a passo para excluir um cliente da nossa base de dados?
+
+
+DELETE FROM tb_customer_address
+WHERE id_customer = (SELECT id_customer
+                     FROM tb_customer
+                     WHERE cpf_cnpj = 88877766655);
+        
+DELETE FROM tb_customer WHERE cpf_cnpj = 88877766655;
